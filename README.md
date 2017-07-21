@@ -25,23 +25,60 @@ Remember to start a new bash session before continue using RoboComp: new variabl
 
 # Installation from source
 
-Tested in Ubuntu 14.04, 14.10, 15.04, 15.10 and 16.04
+Tested in Ubuntu 14.04, 14.10, 15.04, 15.10, 16.04 and 17.04
 <!--If you are not an Ubuntu user, need to modify the core of RoboComp, or just feel like installing from sources, you can follow these instructions (they have been tested in Ubuntu 14.04, 14.10, 15.04, 16.04). If you're not in any of these scenarios, please use the packaged version.
 -->
 
 ## Requirements
-Make sure you have installed the following packages from the Ubuntu repository:
+So if you have already a version of robocomp runing on your system then you will have to remove the package zeroc-ice35 and older version of robocomp, then follow the instructions below to install the new version. 
+To remove the package zeroc-ice35 - 
+    apt-get purge zeroc-ice35
+If we do not do this, then it conflicts with the new installation.
+This removes all the configuration and data files too with the binaries. So we have to rebuild robocomp later on. In short after this we follow the steps as given below.
 
+First we install nodejs and npm - 
+    sudo apt-get install nodejs
+    sudo apt install npm
+    sudo apt-get install nodejs-legacy
+
+Test: Run node -v. The version should be higher than v0.10.32.
+
+We also update npm to latest just for being on a safer side:
+    npm install npm@latest -g
+Test: Run npm -v. The version should be higher than 2.1.8.
+
+Now we fix the npm permissions : follow [this link](https://docs.npmjs.com/getting-started/fixing-npm-permissions) to fix the npm permissions.
+
+Now after setting up npm and node successfully we go forward and start with installing ice-3.6.3 - 
+    If you are a new user please install git first by -
+    sudo apt-get install git
+First we install Ice for C++, Java, PHP, and all Ice services.
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 5E6DA83306132997
+    sudo apt-add-repository "deb http://zeroc.com/download/apt/ubuntu$(lsb_release -rs) stable main"
     sudo apt-get update
-    sudo apt-get install git git-annex cmake g++ libgsl0-dev libopenscenegraph-dev cmake-qt-gui zeroc-ice35 freeglut3-dev libboost-system-dev libboost-thread-dev qt4-dev-tools yakuake python-pip  python-pyparsing python-numpy python-pyside pyside-tools libxt-dev pyqt4-dev-tools qt4-designer libboost-test-dev libboost-filesystem-dev libqt4-dev libqt4-opengl-dev 
+    sudo apt-get install zeroc-ice-all-runtime zeroc-ice-all-dev
+
+Second, we install Ice for JS -
+    npm install -g slice2js
+    npm install -g ice
+
+Third we install Ice for Python (install pip first if not already installed and also the bzlib libraries which are required while installing Ice)- 
+    sudo apt install python-pip
+    sudo apt-get install libbz2-1.0 libbz2-dev libbz2-ocaml libbz2-ocaml-dev
+    pip install zeroc-ice
+
+Now we comeback to installation of robocomp:
+Make sure you have installed the following packages from the Ubuntu repository:
+    sudo apt-get update
+    sudo apt-get install git-annex cmake g++ libgsl0-dev libopenscenegraph-dev cmake-qt-gui freeglut3-dev libboost-system-dev libboost-thread-dev qt4-dev-tools yakuake python-pyparsing python-numpy python-pyside pyside-tools libxt-dev pyqt4-dev-tools qt4-designer libboost-test-dev libboost-filesystem-dev libqt4-dev libqt4-opengl-dev 
     
 ## Installation itself
 
 *cd* to your user (/home/your-linux-user) directory (you are probably in it already) and type:
 
-    git clone https://github.com/robocomp/robocomp.git
+    git clone https://github.com/lovemehta/RoboComp-JS.git robocomp
 
-Now we will create a symbolic link so RobComp can find everything. You will have to enter your passwd:
+Now we will create a symbolic link so RoboComp can find everything. You will have to enter your password:
 
     sudo ln -s ~ /home/robocomp
     
@@ -52,9 +89,9 @@ Edit your ~/.bashrc file
     gedit ~/.bashrc
 
 Add these lines at the end:
-
     export ROBOCOMP=~/robocomp
     export PATH=$PATH:/opt/robocomp/bin
+    export ICEROOT=/usr/lib/x86_64-linux-gnu/
    
 make bash process the modified file by typing: 
 
@@ -69,9 +106,9 @@ Done! Now let's compile and install the whole thing:
     cmake ..
     make
     sudo make install
-
+<!--
 If you want to compile Robocomp with support for FCL, follow the instructions in the [Robocomp with FCL](doc/Compiling RoboComp with collision detection.md) tutorial"
-
+-->
 The RoboComp's core libraries and simulator should now be compiled and installed in `/opt/robocomp`.
 
 Let's now tell Linux where to find RoboComp's libraries:
