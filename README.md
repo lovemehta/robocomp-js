@@ -32,11 +32,14 @@ Tested in Ubuntu 14.04, 14.10, 15.04, 15.10, 16.04 and 17.04
 ## Requirements
 So if you have already a version of robocomp runing on your system then you will have to remove the package zeroc-ice35 and older version of robocomp, then follow the instructions below to install the new version. 
 To remove the package zeroc-ice35 - 
+
     apt-get purge zeroc-ice35
+
 If we do not do this, then it conflicts with the new installation.
 This removes all the configuration and data files too with the binaries. So we have to rebuild robocomp later on. In short after this we follow the steps as given below.
 
 First we install nodejs and npm - 
+
     sudo apt-get install nodejs
     sudo apt install npm
     sudo apt-get install nodejs-legacy
@@ -44,33 +47,42 @@ First we install nodejs and npm -
 Test: Run node -v. The version should be higher than v0.10.32.
 
 We also update npm to latest just for being on a safer side:
+
     npm install npm@latest -g
+
 Test: Run npm -v. The version should be higher than 2.1.8.
 
 Now we fix the npm permissions : follow [this link](https://docs.npmjs.com/getting-started/fixing-npm-permissions) to fix the npm permissions.
 
 Now after setting up npm and node successfully we go forward and start with installing ice-3.6.3 - 
-    If you are a new user please install git first by -
+If you are a new user please install git first by -
+
     sudo apt-get install git
+
 First we install Ice for C++, Java, PHP, and all Ice services.
+
     sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 5E6DA83306132997
     sudo apt-add-repository "deb http://zeroc.com/download/apt/ubuntu$(lsb_release -rs) stable main"
     sudo apt-get update
     sudo apt-get install zeroc-ice-all-runtime zeroc-ice-all-dev
 
 Second, we install Ice for JS -
+
     npm install -g slice2js
     npm install -g ice
 
 Third we install Ice for Python (install pip first if not already installed and also the bzlib libraries which are required while installing Ice)- 
+
     sudo apt install python-pip
     sudo apt-get install libbz2-1.0 libbz2-dev libbz2-ocaml libbz2-ocaml-dev
     pip install zeroc-ice
 
 Now we comeback to installation of robocomp:
 Make sure you have installed the following packages from the Ubuntu repository:
+
     sudo apt-get update
     sudo apt-get install git-annex cmake g++ libgsl0-dev libopenscenegraph-dev cmake-qt-gui freeglut3-dev libboost-system-dev libboost-thread-dev qt4-dev-tools yakuake python-pyparsing python-numpy python-pyside pyside-tools libxt-dev pyqt4-dev-tools qt4-designer libboost-test-dev libboost-filesystem-dev libqt4-dev libqt4-opengl-dev 
+
     
 ## Installation itself
 
