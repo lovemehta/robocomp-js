@@ -1,0 +1,16 @@
+# Sources set
+LIST ( APPEND SOURCES
+	specificworker.cpp
+	specificmonitor.cpp
+	servers.cpp
+	pickhandler.cpp
+)
+
+# Headers set
+LIST ( APPEND HEADERS
+	specificworker.h
+	specificmonitor.h
+)
+
+SET(LIBS ${LIBS} -lboost_system)
+

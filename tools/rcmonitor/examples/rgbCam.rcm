@@ -1,0 +1,7 @@
+interfaces/Camera.ice
+camera
+localhost
+tcp
+10001
+500
+rgbCam.py
