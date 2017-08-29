@@ -1,0 +1,94 @@
+<!--
+[[[cog
+
+import sys
+sys.path.append('/opt/robocomp/python')
+
+import cog
+def A():
+	cog.out('<@@<')
+def Z():
+	cog.out('>@@>')
+def TAB():
+	cog.out('<TABHERE>')
+
+from parseCDSL import *
+includeDirectories = theIDSLPaths.split('#')
+component = CDSLParsing.fromFile(theCDSL, includeDirectories=includeDirectories)
+]]]
+[[[end]]]
+ *    Copyright (C)
+[[[cog
+A()
+import datetime
+cog.out(' ' + str(datetime.date.today().year))
+Z()
+]]]
+[[[end]]]
+ by YOUR NAME HERE
+ *
+ *    This file is part of RoboComp
+ *
+ *    RoboComp is free software: you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as published by
+ *    the Free Software Foundation, either version 3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    RoboComp is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU General Public License for more details.
+ *
+ *    You should have received a copy of the GNU General Public License
+ *    along with RoboComp.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+-->
+
+<!DOCTYPE html>
+<html>
+<title>Default UI for  
+[[[cog
+A()
+cog.out(component['name'])
+]]]
+[[[end]]]
+</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+<div class="w3-container w3-teal">
+<h1>Welcome to your new JS Component named 
+[[[cog
+A()
+cog.out(component['name'])
+]]]
+[[[end]]]
+</h1>
+</div>
+<div class="w3-container">
+	<p>This is an automatically generated webpage.</p>
+  <p>You are seeing this message because your component has been successfully connected to the interface(s) specified and has started. Here is the list of interfaces required by this component is :
+[[[cog
+	for namea, num in getNameNumber(component['requires']):
+		if type(namea) == str:
+			name = namea
+		else:
+			name = namea[0]
+		if communicationIsIce(namea):
+			cog.outl("<br>"+name.lower())
+
+]]]
+[[[end]]]
+
+
+  </p>
+</div>
+<div class="w3-container w3-teal">
+    <p>This is a default page. Please edit UI.html.</p>
+</div>
+<script type="text/javascript" src="cameraCompJS.js"></script>
+</body>
+</html>
+
+
