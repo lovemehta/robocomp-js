@@ -61,8 +61,8 @@ If you are a new user please install git first by -
 
 First we install Ice for C++, Java, PHP, and all Ice services.
 
-    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 5E6DA83306132997
-    sudo apt-add-repository "deb http://zeroc.com/download/apt/ubuntu$(lsb_release -rs) stable main"
+        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv B6391CB2CFBA643D
+    sudo apt-add-repository "deb http://zeroc.com/download/Ice/3.7/ubuntu16.04 stable main"
     sudo apt-get update
     sudo apt-get install zeroc-ice-all-runtime zeroc-ice-all-dev
 
@@ -204,6 +204,7 @@ Please, report any bugs to pbustos@unex.es
     
     
     
+
 
 
 
